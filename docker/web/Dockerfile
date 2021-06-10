@@ -7,6 +7,7 @@ WORKDIR /app
 COPY ./web/package*.json ./
 # 安装依赖
 RUN npm i --production --registry=https://registry.npm.taobao.org
+RUN npm i vue-cli-service
 COPY ./web ./
 # 打包 - 目的：丢到nginx下跑
 RUN npm run build:prod
