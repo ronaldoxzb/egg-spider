@@ -1,12 +1,12 @@
 # node镜像
-FROM node:latest as build-stage
+FROM node:12-alpine as build-stage
 RUN echo "-------------------- web环境配置 --------------------"
 # 指定接下来的工作路径为/app  - 类似于cd命令
 WORKDIR /app
 # 拷贝前端项目到app目录下
 COPY ./web/package*.json ./
 # 安装依赖
-RUN npm i --production --registry=https://registry.npm.taobao.org
+RUN npm i --registry=https://registry.npm.taobao.org
 COPY ./web ./
 # 打包 - 目的：丢到nginx下跑
 RUN npm run build:prod
