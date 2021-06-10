@@ -1,0 +1,66 @@
+version: '3'
+services:
+  db:
+    image: mysql:1
+    container_name: db
+    build: ./docker/mysql # 执行的Dockerfile文件
+    volumes:
+      - ./data/mysql/data:/var/lib/mysql # 容器中的mysql文件对应指向宿主机的文件目录
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d/ # 默认执行宿主机文件夹下的sql脚本
+    environment:
+      - MYSQL_ROOT_PASSWORD=abcd1234 # 设置mysql密码
+    ports:
+      - "3307:3306" # 端口映射
+    restart: always
+    networks:
+      - docker_node
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci # 执行的命令
+  redis:
+    image: redis:1
+    container_name: redis
+    build: ./docker/redis
+    volumes:
+      - ./data/redis1:/data
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - docker_node
+  server: 
+    container_name: server
+    restart: always                        # 重启策略: 容器退出时总是重启容器
+    build: 
+      context: .                           # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
+      dockerfile: ./docker/server/Dockerfile
+    volumes:
+      - ./data/egglog:/root/logs/egg-template
+    ports:
+      - "7009:7001"
+    environment:
+      NODE_ENV: production
+      EGG_MYSQL_HOST: db  # service链接mysql host
+      EGG_REDIS_HOST: redis # service链接redis host
+    depends_on: # 为了使用其他容器中的网络，需设置depends_on
+      - db
+      - redis
+    networks:
+      - docker_node
+  web:                                  # 前端node容器(运行nginx中的Vue项目)
+    container_name: web           # 容器名为'web'
+    restart: always                        # 重启策略: 容器退出时总是重启容器
+    build:
+      context: .                           # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
+      dockerfile: ./docker/web/Dockerfile
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "80:80"                        # 映射端口
+    volumes:
+      - ./data/nginx/logs:/var/log/nginx
+    depends_on:                            # 依赖于容器，被依赖容器启动后此web容器才可启动
+      - server
+    networks:
+      - docker_node
+networks:
+  docker_node:
+    driver: bridge    

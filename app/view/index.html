@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- import CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <style>
+      *{
+        font-size: 14px;
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+      }
+      .item {
+        margin-top: 5px;
+        margin-right: 35px;
+      }
+      .sp {
+        display: flex;align-items: center;justify-content: space-between;
+        margin-right: 10px;
+      }
+      .el-row {
+        margin-top: 10px;
+      }
+      .clearfix{
+        color:hsl(100, 54%, 49%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <el-row :gutter="24">
+        <el-col :span="6">
+          <el-row>
+            <el-card>
+            <div slot="header" class="clearfix">
+              <span>服务器信息</span>
+              <el-button @click="refreshInfo" style="float: right; padding: 3px 0" type="text">刷新</el-button>
+            </div>
+            <div class="item sp">
+              <span>运行状态：</span>
+              <el-tag size="small" :type="Object.is(constants, '0') ? 'success' : 'error'">[Object.is(constants, '0') ? '服务器运行中' : '服务器出现错误']</el-tag>
+            </div>
+            <div class="item sp">
+              <span>发行版本：</span>
+              <el-tag size="small" type="success">[release]</el-tag>
+            </div>
+            <div class="item sp">
+              <span>Node.js编译运行系统平台：</span>
+              <el-tag size="small"> [platform] </el-tag>
+            </div>
+            <div class="item sp">
+              <span>主机名：</span>
+              <el-tag size="small" type="info">[hostname]</el-tag>
+            </div>
+            <div class="item sp">
+              <span>操作系统：</span>
+              <el-tag type="danger" size="small">[type]</el-tag>
+            </div>
+            <div class="item sp">
+              <span>总内存数：</span>
+              <el-tag size="small">[totalmem]</el-tag>
+            </div>
+            <div class="item sp">
+              <span>可用内存数：</span>
+              <el-tag size="small" type="warning">[freemem]</el-tag>
+            </div>
+            <div class="item sp">
+              <span>占用内存：</span>
+              <el-progress :percentage="percentage" >
+            </div>
+            
+            </el-card>
+          </el-row>
+          <el-row>
+            <el-card>
+              <div class="clearfix">
+                <span>逻辑CPU内核信息：</span>
+                <el-button @click="getInfo" style="float: right; padding: 3px 0" type="text">查看</el-button>
+              </div>
+            </el-card>
+          </el-row>
+        </el-col>
+        <el-col :span="9">
+          <el-main>
+            <el-badge :value="province_num" class="item">
+              <el-button size="small"> 省</el-button>
+            </el-badge>
+            <el-badge :value="city_num" class="item">
+              <el-button size="small">市</el-button>
+            </el-badge>
+            <el-badge :value="district_num" class="item" type="primary">
+              <el-button size="small">区</el-button>
+            </el-badge>
+            <el-badge :value="town_num" class="item" type="warning">
+              <el-button size="small">乡镇/街道</el-button>
+            </el-badge>
+            <el-badge :value="village_num" class="item" type="warning">
+              <el-button size="small">村</el-button>
+            </el-badge>
+          </el-main>
+          <el-table
+            border
+            :data="tableList"
+            max-height="550"
+            size="mini"
+            highlight-current-row
+            @row-click="handleCurrentChange"
+            v-loading="loadingTableDetail"
+          >
+            <el-table-column
+              align="center"
+              prop="code"
+              label="区域代码"
+              min-width="20%"
+            >
+            </el-table-column>
+            <el-table-column
+              align="center"
+              prop="name"
+              label="名称"
+              min-width="20%"
+            >
+            </el-table-column>
+          </el-table>
+        </el-col>
+        <el-col :span="9">
+          <el-main>
+            <el-badge :value="cityNum" class="item">
+              <el-button size="small">市</el-button>
+            </el-badge>
+            <el-badge :value="districtNum" class="item" type="primary">
+              <el-button size="small">区</el-button>
+            </el-badge>
+            <el-badge :value="townNum" class="item" type="warning">
+              <el-button size="small">乡镇/街道</el-button>
+            </el-badge>
+            <el-badge :value="villageNum" class="item" type="warning">
+              <el-button size="small">村</el-button>
+            </el-badge>
+          </el-main>
+          <el-tree
+            v-loading="loading"
+            height="750"
+            :data="treeData"
+            node-key="code"
+            @node-click="getTreeNode"
+            show-checkbox
+            :default-checked-keys="defaultCheck"
+            :props="defaultProps"
+            empty-text="别看了，去点点左边的表格吧～"
+          />
+        </el-col>
+      </el-row>
+      <el-drawer
+      title="CPU-INFO"
+      size="50%"
+      :visible.sync="drawer"
+      direction="ltr">
+      <span>
+        <el-table border :data="cpu">
+          <el-table-column
+          show-overflow-tooltip
+          prop="model"
+          label="内核">
+          </el-table-column>
+          <el-table-column
+          show-overflow-tooltip
+          prop="speed"
+          label="频率(GHz)"
+          width="100">
+          </el-table-column>
+          <el-table-column
+          show-overflow-tooltip
+          label="详细信息">
+          <template slot-scope="scope">
+            [JSON.stringify(scope.row.times) ]
+          </template>
+          </el-table-column>
+        </el-table>
+        </span>
+      </el-drawer>
+    </div>
+  </body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script
+    type="text/javascript"
+    src="https://unpkg.com/axios/dist/axios.min.js"
+  ></script>
+  <script>
+    new Vue({
+      el: "#app",
+      delimiters: ["[", "]"],
+      data: function () {
+        return {
+          defaultProps: {
+            label: "name",
+          },
+          defaultCheck: [],
+          treeData: [],
+          areaNumber: {},
+          province_num: 0,
+          city_num: 0,
+          district_num: 0,
+          town_num: 0,
+          village_num: 0,
+          loadingTableDetail: false,
+          tableList: [],
+          cityNum: 0,
+          districtNum: 0,
+          townNum: 0,
+          villageNum: 0,
+          loading: false,
+          //
+          constants: null,
+          release: null,
+          platform: null,
+          hostname: null,
+          type: null,
+          freemem: null,
+          totalmem: null,
+          percentage: null,
+          cpu: [],
+          drawer: false
+        };
+      },
+      created() {
+        this.getAreaNumber();
+        this.getProvinceData();
+        this.init();
+      },
+      methods: {
+        getInfo() {
+          this.drawer = true
+        },
+        refreshInfo() {
+          this.init()
+        },
+        init() {
+          axios.get("/api/system").then((res) => {
+            const {
+              constants,
+              release,
+              platform,
+              hostname,
+              type,
+              freemem,
+              totalmem,
+              percentage,
+              cpu,
+            } = res.data.data;
+            [
+              this.constants,
+              this.release,
+              this.platform,
+              this.hostname,
+              this.type,
+              this.freemem,
+              this.totalmem,
+              this.percentage,
+              this.cpu,
+            ] = [
+              constants,
+              release,
+              platform,
+              hostname,
+              type,
+              freemem,
+              totalmem,
+              percentage,
+              cpu,
+            ];
+          });
+        },
+        changeInit() {
+          this.init();
+        },
+        getProvinceData() {
+          axios
+            .get("/api/getallprovince", {})
+            .then((res) => {
+              this.tableList = res.data.data;
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        handleCurrentChange(val) {
+          this.curTable = val.tableName;
+          this.reSetNum();
+          this.getAreaData(val.code);
+          this.getAreaNumber(val.code);
+        },
+        reSetNum() {
+          this.cityNum = 0;
+          this.districtNum = 0;
+          this.townNum = 0;
+          this.villageNum = 0;
+        },
+        getAreaData(code) {
+          this.loading = true;
+          axios
+            .get(`/api/getareadata/${code}`, {})
+            .then((res) => {
+              this.treeData = res.data.data;
+              this.loading = false;
+            })
+            .catch((error) => {
+              this.loading = false;
+              console.log(error);
+            });
+        },
+        getTreeNode(a, b, c) {
+          if (a.desc === "省") {
+            this.cityNum = a.children.length;
+          } else if (a.desc === "市") {
+            this.districtNum = a.children.length;
+          } else if (a.desc === "区") {
+            this.townNum = a.children.length;
+          } else if (a.desc === "乡镇") {
+            this.villageNum = a.children.length;
+          }
+        },
+        getAreaNumber(code) {
+          axios
+            .get(`/api/getareanumber`, {})
+            .then((res) => {
+              const {
+                province_num,
+                city_num,
+                district_num,
+                town_num,
+                village_num,
+              } = res.data.data;
+              this.province_num = province_num;
+              this.city_num = city_num;
+              this.district_num = district_num;
+              this.town_num = town_num;
+              this.village_num = village_num;
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+      },
+    });
+  </script>
+</html>

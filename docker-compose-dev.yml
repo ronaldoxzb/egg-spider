@@ -1,0 +1,31 @@
+version: '2'
+services:
+  mysql5.7:
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+      - "./mysql5.7/data:/var/lib/mysql"
+      - "./mysql5.7/conf:/etc/mysql/conf.d"
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d/ #执行默认脚本
+    ports:
+      - "3306:3306"
+    user: root:root
+    tty: true
+    restart: always
+    environment:
+      - PROCESS_NUM=1
+      - MYSQL_ROOT_PASSWORD=xier0571
+      - TZ=Asia/Shanghai
+      - TIME_STYLE="+%F %T"
+      - LANG=en_US.UTF-8
+  redis4:
+    image: redis:4
+    container_name: redis
+    volumes:
+      - "./redis4/conf:/usr/local/etc/redis"
+      - "./redis4/data:/data"
+    ports:
+      - "6379:6379"
+    tty: true
+    restart: always
+    command: redis-server --requirepass xier0571
