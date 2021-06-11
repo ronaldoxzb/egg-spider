@@ -9,7 +9,13 @@ egg基础框架
 see [egg docs][egg] for more detail.
 
 ### Development
+#### server
+#### first start mysql & redis
 
+```bash
+$ docker-compose-dev up
+```
+#### second start server
 ```bash
 $ npm i
 $ npm run dev
