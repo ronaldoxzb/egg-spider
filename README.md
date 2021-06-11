@@ -13,7 +13,7 @@
 ### [前端] element-ui (https://github.com/PanJiaChen/vue-admin-template) 🙏
 #### PanJiaChen 大佬最精简的一副vue模版（拿来熟悉docker-compose的发布流程）
 
-## 项目后端结构说明
+## Project back end structure description
 ### app
 ```
 ├── contract
@@ -94,7 +94,7 @@
 👤 **ronaldoxzb**
 
 * Github: [@ronaldoxzb](https://github.com/ronaldoxzb)
-* email: queenxzb@qq.com
+* email: queenxzb@163.com
 * adress:  Zhe Jiang Province HangZhou city
 
 ## QuickStart
@@ -108,7 +108,7 @@ see [egg docs][egg] for more detail.
 #### start mysql & redis
 
 ```bash
-$ docker-compose-dev up
+$ docker-compose -f docker-compose-dev.yml up     
 ```
 #### start server
 
@@ -133,7 +133,7 @@ $ docker-compose up
 $ docker-compose stop
 ```
 [egg]: https://eggjs.org
-## 🤝 Contributing
+## Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/ronaldoxzb/egg-spider/issues).
 
