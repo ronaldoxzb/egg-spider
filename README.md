@@ -1,6 +1,6 @@
 # Egg-spider
 
-## Project Description
+## Project description
 ### [后端]egg.js(jwt) + mysql(sequelize) + redis + docker + docker-compose + nginx + vue + element-ui 全栈获取省市区数据（统计局数据）【工具】项目，实现在docker环境中一键部署
 
 #### 1 实现用户注册登录
@@ -13,41 +13,42 @@
 ### [前端] element-ui (https://github.com/PanJiaChen/vue-admin-template) 🙏
 #### PanJiaChen 大佬最精简的一副vue模版（拿来熟悉docker-compose的发布流程）
 
-## 5. 项目后端结构说明
+## 项目后端结构说明
+### app
 ```
 ├── contract
-│   └── type.js
+│   └── type.js     swaggerdoc配置文件
 ├── controller
 │   ├── api
-│   │   ├── area.js
-│   │   ├── mock.js
-│   │   ├── system.js
+│   │   ├── area.js     省市区乡镇村数据获取
+│   │   ├── mock.js     生成mock数据生成Excel文件
+│   │   ├── system.js       获取系统资源使用情况
 │   │   ├── tool
-│   │   │   └── email.js
+│   │   │   └── email.js        发送邮件
 │   │   ├── user.js
-│   │   └── yuque.js
+│   │   └── yuque.js        羽雀API调用
 │   └── view
-│       └── page.js
+│       └── page.js     模版引擎渲染index
 ├── database
-│   └── db.js
+│   └── db.js       model层公用
 ├── extend
-│   ├── application.js
-│   └── helper.js
+│   ├── application.js      app扩展函数
+│   └── helper.js       公用函数封装
 ├── middleware
-│   ├── error_handler.js
-│   ├── notfound_handler.js
-│   └── pagination.js
+│   ├── error_handler.js    成功/出错处理等
+│   ├── notfound_handler.js     404处理等
+│   └── pagination.js       分页器封装
 ├── model
-│   ├── cities.js
-│   ├── districts.js
-│   ├── provinces.js
-│   ├── towns.js
-│   ├── user.js
-│   └── villages.js
-├── public
-├── router
+│   ├── cities.js       市表
+│   ├── districts.js        街道表
+│   ├── provinces.js        省表
+│   ├── towns.js        乡镇表
+│   ├── user.js     用户表
+│   └── villages.js     村表
+├── public      静态资源文件
+├── router      路由表（不赘述）
 │   ├── api
-│   │   ├── area.js
+│   │   ├── area.js     
 │   │   ├── mock.js
 │   │   ├── system.js
 │   │   ├── tool
@@ -56,15 +57,38 @@
 │   │   └── yuque.js
 │   └── view
 │       └── page.js
-├── service
-│   ├── area.js
+├── service     逻辑处理层
+│   ├── area.js     
 │   ├── cache.js
 │   ├── common.js
 │   └── user.js
-├── utils
-└── view
+├── utils       暂无
+└── view        未做前后端分离前的模版引擎渲染的页面
     ├── index.html
     └── tool.html
+```
+### config
+```
+├── config.default.js   默认配置文件
+├── config.local.js     本地开发配置文件
+├── config.prod.js      生产配置文件
+└── plugin.js       插件配置文件
+```
+### docker
+```
+├── mysql
+│   ├── Dockerfile      mysql镜像文件
+│   ├── init
+│   │   └── init.sql        初始建库执行的sql   
+│   └── mysqld.cnf      mysql配置文件
+├── redis
+│   ├── Dockerfile      redis镜像文件
+│   └── redis.conf      redis配置文件
+├── server
+│   └── Dockerfile      server镜像文件启动
+└── web
+    ├── Dockerfile      web build 及 nginx镜像文件
+    └── nginx.conf      nginx配置文件
 ```
 ## Author Info
 👤 **ronaldoxzb**
@@ -73,7 +97,6 @@
 * email: queenxzb@qq.com
 * adress:  Zhe Jiang Province HangZhou city
 
-## project 
 ## QuickStart
 
 <!-- add docs here for user -->
@@ -82,12 +105,12 @@ see [egg docs][egg] for more detail.
 
 ## Development
 ### server(自行安装docker&docker-compose)
-#### 1 start mysql & redis
+#### start mysql & redis
 
 ```bash
 $ docker-compose-dev up
 ```
-### 2 start server
+#### start server
 
 ```bash
 $ npm i
@@ -96,7 +119,7 @@ $ open http://localhost:7001/
 ```
 ### web(自行安装node环境)
 
-#### 1 start web
+#### start web
 
 ```bash
 $ npm i
@@ -104,16 +127,19 @@ $ npm run dev
 $ open http://localhost:9028/
 ```
 ## Deploy(宿主机安装docker&&docker-compose)
-
 <!-- start stop -->
 ```bash
 $ docker-compose up
 $ docker-compose stop
 ```
-
-
 [egg]: https://eggjs.org
+## 🤝 Contributing
 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/ronaldoxzb/egg-spider/issues).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
 ## License
 
 [MIT](https://github.com/ronaldoxzb/egg-spider/blob/master/LICENSE) license.
