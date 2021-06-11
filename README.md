@@ -31,3 +31,54 @@ $ docker-compose stop
 
 
 [egg]: https://eggjs.org
+
+├── contract
+│   └── type.js
+├── controller
+│   ├── api
+│   │   ├── area.js
+│   │   ├── mock.js
+│   │   ├── system.js
+│   │   ├── tool
+│   │   │   └── email.js
+│   │   ├── user.js
+│   │   └── yuque.js
+│   └── view
+│       └── page.js
+├── database
+│   └── db.js
+├── extend
+│   ├── application.js
+│   └── helper.js
+├── middleware
+│   ├── error_handler.js
+│   ├── notfound_handler.js
+│   └── pagination.js
+├── model
+│   ├── cities.js
+│   ├── districts.js
+│   ├── provinces.js
+│   ├── towns.js
+│   ├── user.js
+│   └── villages.js
+├── public
+├── router
+│   ├── api
+│   │   ├── area.js
+│   │   ├── mock.js
+│   │   ├── system.js
+│   │   ├── tool
+│   │   │   └── email.js
+│   │   ├── user.js
+│   │   └── yuque.js
+│   └── view
+│       └── page.js
+├── service
+│   ├── area.js
+│   ├── cache.js
+│   ├── common.js
+│   └── user.js
+├── utils
+└── view
+    ├── index.html
+    └── tool.html
