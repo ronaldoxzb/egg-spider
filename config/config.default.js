@@ -110,8 +110,8 @@ module.exports = (appInfo) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: '****', // generated ethereal user
-      pass: '****' // generated ethereal password
+      user: '1101781068@qq.com', // generated ethereal user
+      pass: 'edcnoaztzdnfbadh' // generated ethereal password
     },
   };
   config.swaggerdoc = {
