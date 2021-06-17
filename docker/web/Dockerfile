@@ -18,7 +18,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN rm /etc/nginx/nginx.conf
 # 把主机的nginx.conf文件复制到nginx容器的/etc/nginx文件夹下
 COPY ./docker/web/nginx.conf /etc/nginx/
-COPY ./docker/web/ssl /etc/nginx/
+# COPY ./docker/web/cert /etc/nginx/
 # 拷贝前端vue项目打包后生成的文件到nginx下运行
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 # 暴露80端口
