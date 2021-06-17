@@ -73,6 +73,12 @@ export const constantRoutes = [
         name: 'Tree',
         component: () => import('@/views/tool/tree'),
         meta: { title: '省市区', icon: 'tree' }
+      },
+      {
+        path: 'menu',
+        name: 'Menu',
+        component: () => import('@/views/tool/menu'),
+        meta: { title: '省市区同步', icon: 'example' }
       }
     ]
   },

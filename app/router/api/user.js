@@ -4,13 +4,13 @@ module.exports = app => {
   const { controller, middleware, apiV1Router } = app
 
   // 用户注册
-  apiV1Router.post('/user', controller.api.user.register)
+  apiV1Router.post('/user',  app.jwt, controller.api.user.register)
 
   // 用户登录
   apiV1Router.post('/user/login', controller.api.user.login)
 
   // 获取用户列表
-  apiV1Router.get('/user', middleware.pagination, controller.api.user.getAllUser)
+  apiV1Router.get('/user',  app.jwt, middleware.pagination, controller.api.user.getAllUser)
 
   // 获取单个用户
   apiV1Router.get('/user/info', app.jwt, controller.api.user.getUserInfo)
