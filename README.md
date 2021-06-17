@@ -99,6 +99,10 @@
 
 ## QuickStart
 
+## Preview
+### 线上预览地址 (http://ronaldoxzb.com/) 
+#### admin admin
+
 <!-- add docs here for user -->
 
 see [egg docs][egg] for more detail.
