@@ -1,6 +1,6 @@
 # Egg-spider
 ## Preview
-### 线上预览地址 (http://ronaldoxzb.com/) 
+### 线上预览地址 (https://ronaldoxzb.com/) 
 
 #### admin admin
 ## Project description
