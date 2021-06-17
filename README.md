@@ -1,5 +1,8 @@
 # Egg-spider
+## Preview
+### 线上预览地址 (http://ronaldoxzb.com/) 
 
+#### admin admin
 ## Project description
 ### [后端]egg.js(jwt) + mysql(sequelize) + redis + docker + docker-compose + nginx + vue + element-ui 全栈获取省市区数据（统计局数据）【工具】项目，实现在docker环境中一键部署
 
@@ -11,8 +14,8 @@
 #### 6 实现邮件的发送（基于smtp.qq.com)
 
 ### [前端] element-ui (https://github.com/PanJiaChen/vue-admin-template) 🙏
-#### PanJiaChen 大佬最精简的一副vue模版（拿来熟悉docker-compose的发布流程）
 
+#### PanJiaChen 大佬最精简的一副vue模版（拿来熟悉docker-compose的发布流程）
 ## Project back end structure description
 ### app
 ```
@@ -98,11 +101,6 @@
 * adress:  Zhe Jiang Province HangZhou city
 
 ## QuickStart
-
-## Preview
-### 线上预览地址 (http://ronaldoxzb.com/) 
-#### admin admin
-
 <!-- add docs here for user -->
 
 see [egg docs][egg] for more detail.
