@@ -55,6 +55,7 @@ services:
       TZ: Asia/Shanghai
     ports:
       - "80:80"                        # 映射端口
+      - "443:443"                        # 映射端口
     volumes:
       - ./data/nginx/logs:/var/log/nginx
     depends_on:                            # 依赖于容器，被依赖容器启动后此web容器才可启动
