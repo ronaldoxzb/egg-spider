@@ -4,12 +4,6 @@
       <div class="racingLoader-wrap">
         <div class="title">
           <div class="tip">RONALDOXZB SERVE IS <span>RUNING</span></div>
-          <!-- <div class="head">
-            💻
-            <a href="/https://github.com/ronaldoxzb" target="view_window"
-              >github</a
-            >
-          </div> -->
         </div>
         <svg viewBox="0 0 178 40" width="178" height="20">
           <!-- dash included behind the car
@@ -340,7 +334,7 @@ export default {
     };
     const validatePassword = (rule, value, callback) => {
       if (value.length < 5) {
-        callback(new Error("The password can not be less than 5 digits"));
+        callback(new Error("Password can not be less than 5 digits"));
       } else {
         callback();
       }
@@ -406,7 +400,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 $bg: #283443;
 $light_gray: #fff;
 $cursor: #fff;
@@ -574,13 +567,14 @@ otherwise the dashes would still be partially visible on firefox and edge (at le
 .title {
   text-align: center;
   color: #d9d9d9;
-  font-size: 40px;
   display: flex;
+  font-size: 30px;
+  margin: 0 auto;
+  width: 90%;
   flex-flow: column;
   align-items: center;
   margin-top: 100px;
 }
-
 .head {
   width: 100%;
   font-size: 30px;
@@ -599,11 +593,15 @@ otherwise the dashes would still be partially visible on firefox and edge (at le
 }
 .footer-bar {
   p {
-    margin: 10px;
+    margin: 10px auto;
+    font-size: 14px;
+    width: 80%;
+    display: block;
   }
   text-align: center;
-  padding: 16px 144px;
-  margin: 0;
+  margin: 3% auto;
+
+  width: 80%;
   line-height: 14px;
   overflow: hidden;
   font-family: Avenir, Chinese Quote, -apple-system, BlinkMacSystemFont,
@@ -629,37 +627,6 @@ $cursor: #fff;
   }
 }
 
-/* reset element-ui css */
-.login-container {
-  .el-input {
-    display: inline-block;
-    height: 47px;
-    width: 85%;
-
-    input {
-      background: transparent;
-      border: 0px;
-      -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
-      caret-color: $cursor;
-
-      &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
-      }
-    }
-  }
-
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #454545;
-  }
-}
 </style>
 
 <style lang="scss" scoped>
@@ -675,8 +642,7 @@ $light_gray: #eee;
 
   .login-form {
     position: relative;
-    width: 420px;
-    max-width: 100%;
+    width: 60%;
     margin: 0 auto;
     margin-top: 20px;
   }
