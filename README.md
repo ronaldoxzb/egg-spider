@@ -1,6 +1,6 @@
 # Egg-spider
 ## Preview
-### 线上预览地址 (https://ronaldoxzb.com/) [此项目暂不提供预览]如有需要可在个人博客下留言
+### 线上预览地址 (https://ronaldoxzb.cn/) 体验账号admin admin
 
 ## Project description
 ### [后端]egg.js(jwt) + mysql(sequelize) + redis + docker + docker-compose + nginx + vue + element-ui 全栈获取省市区数据（统计局数据）【工具】项目，实现在docker环境中一键部署
