@@ -61,6 +61,9 @@ module.exports = {
       return { error: '联系管理员吧' }
     }
   },
+  genID(length) {
+      return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);
+  },
   // 保存全局的用户wechat数据
   wechatQueue:{},
   // 用户批量添加好友的队列。

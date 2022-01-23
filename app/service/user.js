@@ -9,7 +9,6 @@ class UserService extends Service {
    * @return {Object} 用户信息
    */
   async create(user) {
-    console.log(this.ctx.model.User);
     return await this.ctx.model.User.create(user);
   }
 

@@ -18,6 +18,7 @@ function defineModel (app, name, attributes) {
     defaultValue: () => {
       return generateUUID()
     },
+    primaryKey: true
   }
   for (const key in attributes) {
     const value = attributes[key]

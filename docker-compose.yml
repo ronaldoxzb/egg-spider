@@ -33,7 +33,9 @@ services:
       context: .                           # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
       dockerfile: ./docker/server/Dockerfile
     volumes:
+    # /usr/ezreal/egg-spider/data/public
       - ./data/egglog:/root/logs/egg-template
+      - ./data/public:/root/app/public
     ports:
       - "7009:7001"
     environment:

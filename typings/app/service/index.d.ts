@@ -9,6 +9,7 @@ type AutoInstanceType<T, U = T extends CanExportFunc ? T : T extends AnyFunc ? R
 import ExportArea = require('../../../app/service/area');
 import ExportCache = require('../../../app/service/cache');
 import ExportCommon = require('../../../app/service/common');
+import ExportMedia = require('../../../app/service/media');
 import ExportUser = require('../../../app/service/user');
 
 declare module 'egg' {
@@ -16,6 +17,7 @@ declare module 'egg' {
     area: AutoInstanceType<typeof ExportArea>;
     cache: AutoInstanceType<typeof ExportCache>;
     common: AutoInstanceType<typeof ExportCommon>;
+    media: AutoInstanceType<typeof ExportMedia>;
     user: AutoInstanceType<typeof ExportUser>;
   }
 }

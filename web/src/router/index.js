@@ -75,10 +75,16 @@ export const constantRoutes = [
         meta: { title: '省市区', icon: 'tree' }
       },
       {
-        path: 'menu',
-        name: 'Menu',
-        component: () => import('@/views/tool/menu'),
-        meta: { title: '省市区同步', icon: 'example' }
+        path: 'uploadnetwork',
+        name: 'Upload',
+        component: () => import('@/views/tool/uploadNetwork'),
+        meta: { title: 'OSS上传', icon: 'example' }
+      },
+      {
+        path: 'uploadlocal',
+        name: 'Upload',
+        component: () => import('@/views/tool/uploadLocal'),
+        meta: { title: '本地上传', icon: 'example' }
       }
     ]
   },

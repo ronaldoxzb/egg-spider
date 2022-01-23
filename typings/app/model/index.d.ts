@@ -4,6 +4,7 @@
 import 'egg';
 import ExportCities = require('../../../app/model/cities');
 import ExportDistricts = require('../../../app/model/districts');
+import ExportMedia = require('../../../app/model/media');
 import ExportProvinces = require('../../../app/model/provinces');
 import ExportTowns = require('../../../app/model/towns');
 import ExportUser = require('../../../app/model/user');
@@ -13,6 +14,7 @@ declare module 'egg' {
   interface IModel {
     Cities: ReturnType<typeof ExportCities>;
     Districts: ReturnType<typeof ExportDistricts>;
+    Media: ReturnType<typeof ExportMedia>;
     Provinces: ReturnType<typeof ExportProvinces>;
     Towns: ReturnType<typeof ExportTowns>;
     User: ReturnType<typeof ExportUser>;

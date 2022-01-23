@@ -32,6 +32,12 @@ module.exports = (appInfo) => {
   const userConfig = {
     // myAppName: 'egg',
   };
+  // 注意oss多文件上传是file形式,本地上传是stream形式主义区别
+  config.multipart = {
+    mode: "stream",
+    // fileSize: '50mb',  // 文件大小
+    fileModeMatch: /^(\/api\/upload\/network)$/, // '/upload/local/'接口使用file模式，其他使用stream模式
+  }
   // add your jwt config
   config.jwt = {
     secret: "zzestlgcjwtsecret",
@@ -46,6 +52,16 @@ module.exports = (appInfo) => {
         return ctx.query.token;
       }
       return null;
+    },
+  };
+  config.oss = {
+    // 这里需要的东西去自己的服务器里看，我用的阿里云
+    client: {
+      accessKeyId: "LTAI5tGAaZ49iG74WwZ6H92q",
+      accessKeySecret: "1TDeDRHMXEt5Q1ltIJcNfeu0apgUhC",
+      bucket: "ronaldoxzb",
+      endpoint: "oss-cn-beijing.aliyuncs.com",
+      timeout: "300s",
     },
   };
   // sequelise config
@@ -110,8 +126,8 @@ module.exports = (appInfo) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: '1101781068@qq.com', // generated ethereal user
-      pass: 'edcnoaztzdnfbadh' // generated ethereal password
+      user: "1101781068@qq.com", // generated ethereal user
+      pass: "edcnoaztzdnfbadh", // generated ethereal password
     },
   };
   config.swaggerdoc = {

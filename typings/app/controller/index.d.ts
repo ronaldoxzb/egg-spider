@@ -3,6 +3,8 @@
 
 import 'egg';
 import ExportApiArea = require('../../../app/controller/api/area');
+import ExportApiCommon = require('../../../app/controller/api/common');
+import ExportApiMedia = require('../../../app/controller/api/media');
 import ExportApiMock = require('../../../app/controller/api/mock');
 import ExportApiSystem = require('../../../app/controller/api/system');
 import ExportApiUser = require('../../../app/controller/api/user');
@@ -14,6 +16,8 @@ declare module 'egg' {
   interface IController {
     api: {
       area: ExportApiArea;
+      common: ExportApiCommon;
+      media: ExportApiMedia;
       mock: ExportApiMock;
       system: ExportApiSystem;
       user: ExportApiUser;

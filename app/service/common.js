@@ -66,7 +66,7 @@ class CommonService extends Service {
    * @param {object} where          查询条件
    * @return {Promise(object)}      对象
    */
-   async findAll({
+  async findAll({
     modelName,
     where = {},
     attributes = {},

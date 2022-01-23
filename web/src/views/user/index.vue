@@ -213,10 +213,12 @@ export default {
       if (this.loading) return;
       this.query.size = size;
       this.query.page = 1;
+      this.refreshData()
     },
     handleCurrentChange(page) {
       if (this.loading) return;
       this.query.page = page;
+      this.refreshData()
     }
   },
   filters: {

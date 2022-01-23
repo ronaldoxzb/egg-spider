@@ -45,6 +45,14 @@ module.exports = {
         pathRewrite: {
           [process.env.VUE_APP_BASE_API]: ''
         }
+      },
+      [process.env.VUE_APP_SERVER_MEDIA_URL]: {
+        target: 'http://127.0.0.1:7001',
+        ws: false,
+        changeOrigin: true,
+        pathRewrite: {
+          [process.env.VUE_APP_SERVER_MEDIA_URL]: ''
+        }
       }
     
     },
