@@ -57,10 +57,10 @@ module.exports = (appInfo) => {
   config.oss = {
     // 这里需要的东西去自己的服务器里看，我用的阿里云
     client: {
-      accessKeyId: "*****",
-      accessKeySecret: "*****",
-      bucket: "*****",
-      endpoint: "******",
+      accessKeyId: "LTAI5tGAaZ49iG74WwZ6H92q",
+      accessKeySecret: "1TDeDRHMXEt5Q1ltIJcNfeu0apgUhC",
+      bucket: "ronaldoxzb",
+      endpoint: "oss-cn-beijing.aliyuncs.com",
       timeout: "300s",
     },
   };
