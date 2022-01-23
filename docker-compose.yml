@@ -35,7 +35,7 @@ services:
     volumes:
     # /usr/ezreal/egg-spider/data/public
       - ./data/egglog:/root/logs/egg-template
-      - ./data/public:/root/app/public
+      - ./data/public:/usr/src/app/app/public
     ports:
       - "7009:7001"
     environment:
