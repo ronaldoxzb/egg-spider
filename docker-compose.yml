@@ -61,6 +61,7 @@ services:
     volumes:
       - ./data/nginx/logs:/var/log/nginx
       - ./docker/web/cert:/etc/nginx/cert
+      - ./data/public:/usr/src/app/app/public
     depends_on:                            # 依赖于容器，被依赖容器启动后此web容器才可启动
       - server
     networks:
