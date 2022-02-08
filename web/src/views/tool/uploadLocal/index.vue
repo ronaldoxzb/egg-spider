@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-row :gutter="24">
-      <el-col :span="8">
+      <el-col :span="6">
         <el-row>
           <el-card>
             <el-upload
@@ -27,7 +27,7 @@
           </el-card>
         </el-row>
       </el-col>
-      <el-col :span="16">
+      <el-col :span="18">
         <el-table border :data="tableData" v-loading="loading">
           <el-table-column label="名称" prop="name"></el-table-column>
           <el-table-column label="媒体地址" prop="url">
@@ -40,7 +40,7 @@
                   :preview-src-list="[getImgUrl(url)]"
                 >
                 </el-image>
-                <video v-else :src="getImgUrl(url)" width="300" height="300" controls>
+                <video v-else :src="getImgUrl(url)" width="400" height="200" controls>
                   
                 </video>
               </div>
