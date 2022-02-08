@@ -37,7 +37,7 @@ module.exports = (appInfo) => {
     mode: "stream",
     // fileSize: '50mb',  // 文件大小
     fileModeMatch: /^(\/api\/upload\/network)$/, // '/upload/local/'接口使用file模式，其他使用stream模式
-  }
+  };
   // add your jwt config
   config.jwt = {
     secret: "zzestlgcjwtsecret",
@@ -120,6 +120,10 @@ module.exports = (appInfo) => {
   config.logger = {
     outputJSON: true,
   };
+  config.multipart = {
+    // fields: 50,//表单上传字段限制的个数
+    fileSize: "200mb", //文件上传的大小限制
+  };
   // 邮件服务器配置
   config.mailer = {
     host: "smtp.qq.com",
@@ -130,6 +134,7 @@ module.exports = (appInfo) => {
       pass: "edcnoaztzdnfbadh", // generated ethereal password
     },
   };
+
   config.swaggerdoc = {
     dirScanner: "./app/controller/api", // 配置自动扫描的控制器路径
     // 接口文档的标题，描述或其它

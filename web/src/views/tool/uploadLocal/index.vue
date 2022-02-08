@@ -34,11 +34,15 @@
             <template slot-scope="{ row: { url } }">
               <div>
                 <el-image
+                  v-if="isMp4(url)"
                   style="width: 100px; height: 100px"
                   :src="getImgUrl(url)"
                   :preview-src-list="[getImgUrl(url)]"
                 >
                 </el-image>
+                <video v-else :src="getImgUrl(url)" width="300" height="300" controls>
+                  
+                </video>
               </div>
             </template>
           </el-table-column>
@@ -88,10 +92,14 @@ export default {
   methods: {
     getImgUrl(url) {
       if (!/^http:\/\/.*/i.test(url)) {
-        return  process.env.VUE_APP_SERVER_MEDIA_URL + url;
+        return process.env.VUE_APP_SERVER_MEDIA_URL + url;
       } else {
         return url;
       }
+    },
+    isMp4(url) {
+      if (!/^.*\.(mp|MP)4$/.test(url)) return true;
+      return false;
     },
     handlePreview(file) {
       console.log(file);
