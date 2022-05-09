@@ -7,6 +7,7 @@ module.exports = app => {
   const Media = db.defineModel(app, 'media', {
     name: {
       type: STRING(128),
+      primaryKey: true,
       allowNull: true,
     },
     url: {
